@@ -26,7 +26,7 @@ evaluate_script (ctx, script, ...)
 		int starting_line_number = 1;
 		JSValueRef exception;
 		SV *ctx_sv;
-	PREINIT:
+	INIT:
 		ctx_sv = ST (0);
 	CODE:
 		switch (items) {
