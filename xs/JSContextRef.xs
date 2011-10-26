@@ -46,6 +46,8 @@ evaluate_script (ctx, script, ...)
 
 		RETVAL = JSEvaluateScript (ctx, script, object, source_url,
 		                           starting_line_number, &exception);
+		if (script != NULL) JSStringRelease(script);
+		if (source_url != NULL) JSStringRelease(source_url);
 	POSTCALL:
 		if (RETVAL == NULL) {
 			croak ("exception"); /* TODO */
@@ -79,6 +81,8 @@ check_script_syntax (ctx, script, ...)
 
 		RETVAL = JSCheckScriptSyntax (ctx, script, source_url,
 		                              starting_line_number, &exception);
+		if (script != NULL) JSStringRelease(script);
+		if (source_url != NULL) JSStringRelease(source_url);
 	POSTCALL:
 		if (RETVAL) {
 			croak ("syntax error"); /* TODO */
